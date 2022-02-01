@@ -1,11 +1,10 @@
 require('dotenv').config();
 
 import express from 'express';
+import mainRouter from './routes';
 
 const app = express();
 
-app.get('/', (req, res) => {
-  res.status(200).json({ message: 'first test route' });
-});
+app.use('/api', mainRouter);
 
 export default app;
