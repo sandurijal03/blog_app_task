@@ -1,21 +1,13 @@
 require('dotenv').config();
 
-import { ApolloServer, gql } from 'apollo-server-express';
+import { ApolloServer } from 'apollo-server-express';
 import { ApolloServerPluginDrainHttpServer } from 'apollo-server-core';
 import express from 'express';
 import http from 'http';
 
-const typeDefs = gql`
-  type Query {
-    hello: String
-  }
-`;
-
-const resolvers = {
-  Query: {
-    hello: () => 'Hello world',
-  },
-};
+import { resolvers, typeDefs } from './graphql';
+import connectDB from './db/connectDB';
+import User from './models/User';
 
 async function mountServer() {
   const app = express();
@@ -23,9 +15,15 @@ async function mountServer() {
   const server = new ApolloServer({
     typeDefs,
     resolvers,
+    context: () => {
+      return {
+        User,
+      };
+    },
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
   });
   await server.start();
+  connectDB();
   server.applyMiddleware({ app });
   const port = process.env.PORT;
   await new Promise((resolve) => httpServer.listen({ port }, resolve));
