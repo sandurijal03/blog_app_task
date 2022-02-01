@@ -1,8 +1,18 @@
 import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+
+const createToken = (user, secret) => {
+  const { email, name } = user;
+  return jwt.sign({ email, name }, secret, {
+    expiresIn: '5d',
+  });
+};
 
 const resolvers = {
   Query: {
-    hello: () => 'Hello world',
+    getProfile: async (parent, args, { req, user }) => {
+      return user;
+    },
   },
   Mutation: {
     register: async (
@@ -20,7 +30,13 @@ const resolvers = {
           avatar,
         });
         const user = await newUser.save();
-        return user;
+        const payload = {
+          name: user.name,
+          email: user.email,
+        };
+        const token = createToken(payload, process.env.JWT_SECRET);
+        // return 'Registered successfully';
+        return token;
       } catch (err) {
         throw new Error(err.message);
       }
@@ -34,7 +50,12 @@ const resolvers = {
           throw new Error(
             'Either email or password is incorrect. Please verify',
           );
-        return user;
+        const payload = {
+          name: user.name,
+          email: user.email,
+        };
+        const token = createToken(payload, process.env.JWT_SECRET);
+        return token;
       } catch (err) {
         throw new Error(err);
       }

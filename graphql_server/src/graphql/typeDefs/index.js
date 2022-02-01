@@ -10,16 +10,17 @@ const typeDefs = gql`
   }
 
   type Query {
-    hello: String
+    getProfile: User
   }
+
   type Mutation {
     register(
       name: String!
       email: String!
       password: String!
       avatar: String
-    ): User
-    login(email: String!, password: String!): User
+    ): String
+    login(email: String!, password: String!): String
   }
 `;
 
