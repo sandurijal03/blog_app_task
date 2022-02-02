@@ -6,6 +6,8 @@ import express from 'express';
 import { resolvers, typeDefs } from './graphql';
 import connectDB from './db/connectDB';
 import User from './models/User';
+import Category from './models/Category';
+import Post from './models/Post';
 
 const auth = require('./middlewares/auth');
 
@@ -30,6 +32,8 @@ const server = new ApolloServer({
     const { isAuth, user } = req;
     return {
       User,
+      Category,
+      Post,
       req,
       isAuth,
       user,
