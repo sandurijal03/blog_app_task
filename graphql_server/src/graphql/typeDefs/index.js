@@ -1,27 +1,5 @@
-import { gql } from 'apollo-server-express';
+import baseDefs from './baseDefs';
+import user from './user';
+import post from './post';
 
-const typeDefs = gql`
-  type User {
-    id: ID!
-    name: String!
-    email: String!
-    password: String!
-    avatar: String!
-  }
-
-  type Query {
-    getProfile: User
-  }
-
-  type Mutation {
-    register(
-      name: String!
-      email: String!
-      password: String!
-      avatar: String
-    ): String
-    login(email: String!, password: String!): String
-  }
-`;
-
-export default typeDefs;
+export default [baseDefs, user, post];
