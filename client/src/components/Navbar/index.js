@@ -1,14 +1,14 @@
 import { Link } from 'react-router-dom';
-import { FaFacebook, FaTwitter, FaLinkedin, FaUser } from 'react-icons/fa';
+import { FaFacebook, FaTwitter, FaLinkedin } from 'react-icons/fa';
 
 import {
-  // Avatar,
   Center,
   Container,
   Right,
   Left,
   NavLinks,
   NavLink,
+  Avatar,
 } from './style';
 
 const links = [
@@ -42,7 +42,8 @@ const routes = links.map((link) => (
   </NavLinks>
 ));
 
-const Navbar = () => {
+const Navbar = ({ name, avatar }) => {
+  console.log(name);
   return (
     <Container>
       <Left>
@@ -52,15 +53,20 @@ const Navbar = () => {
       </Left>
       <Center>{routes}</Center>
       <Right>
-        <FaUser style={{ marginRight: '20px' }} />
-        <NavLinks>
-          <NavLink>
-            <Link to='/login'>Login</Link>
-          </NavLink>
-          <NavLink>
-            <Link to='/register'>Register</Link>
-          </NavLink>
-        </NavLinks>
+        {name ? (
+          <Link to='/settings'>
+            <Avatar src={avatar} />
+          </Link>
+        ) : (
+          <NavLinks>
+            <NavLink>
+              <Link to='/login'>Login</Link>
+            </NavLink>
+            <NavLink>
+              <Link to='/register'>Register</Link>
+            </NavLink>
+          </NavLinks>
+        )}
       </Right>
     </Container>
   );

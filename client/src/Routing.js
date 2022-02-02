@@ -27,10 +27,10 @@ const Routing = () => {
 
   console.log(data.getProfile);
 
-  const { name, email } = data.getProfile;
+  const { name, email, avatar } = data.getProfile;
   return (
     <BrowserRouter>
-      <Navbar />
+      <Navbar name={name} avatar={avatar} />
       <Routes>
         <Route path='/' element={<Home name={name} email={email} />} />
         <Route path='/register' element={<Register />} />

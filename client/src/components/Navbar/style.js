@@ -54,7 +54,7 @@ const NavLink = styled.li`
   }
 `;
 
-const Avatar = styled.span`
+const Avatar = styled.img`
   width: 40px;
   height: 40px;
   border-radius: 50%;
