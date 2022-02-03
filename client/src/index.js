@@ -7,8 +7,9 @@ import {
   ApolloLink,
   HttpLink,
 } from '@apollo/client';
+import { BrowserRouter } from 'react-router-dom';
 
-import Routing from './Routing';
+import RouteWithSession from './Routing';
 
 const httpLink = new HttpLink({
   uri: 'http://localhost:8848/graphql',
@@ -29,11 +30,19 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+const Root = () => (
+  <>
+    <BrowserRouter>
+      <RouteWithSession />
+    </BrowserRouter>
+  </>
+);
+
 const root = document.querySelector('#root');
 render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      <Routing />
+      <Root />
     </ApolloProvider>
   </React.StrictMode>,
   root,
