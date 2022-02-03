@@ -1,43 +1,33 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { gql, useQuery } from '@apollo/client';
+import { Routes, Route } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Home from './pages/Home';
-import Register from './pages/Register';
-import Login from './pages/Login';
+import Register from './pages/auth/Register';
+import Login from './pages/auth/Login';
 import Navbar from './components/Navbar';
-import Loading from './components/Loading';
-import Error from './components/Error';
+import withSession from './components/withSession';
+import Write from './pages/Write';
+import Categories from './pages/About';
+import Contact from './pages/Contact';
 
-const getProfile = gql`
-  query {
-    getProfile {
-      id
-      name
-      email
-      avatar
-    }
-  }
-`;
-
-const Routing = () => {
-  const { data, error, loading } = useQuery(getProfile);
-
-  if (error) return <Error />;
-  if (loading) return <Loading />;
-
-  console.log(data.getProfile);
-
-  const { name, email, avatar } = data.getProfile;
+const Routing = ({ refetch, session }) => {
   return (
-    <BrowserRouter>
-      <Navbar name={name} avatar={avatar} />
+    <>
+      <Navbar session={session} />
+      <ToastContainer position='top-center' />
       <Routes>
-        <Route path='/' element={<Home name={name} email={email} />} />
-        <Route path='/register' element={<Register />} />
-        <Route path='/login' element={<Login />} />
+        <Route path='/' element={<Home />} />
+        <Route path='/register' element={<Register refetch={refetch} />} />
+        <Route path='/login' element={<Login refetch={refetch} />} />
+        <Route path='/write' element={<Write session={session} />} />
+        <Route path='/categories' element={<Categories />} />
+        <Route path='/contact' element={<Contact />} />
       </Routes>
-    </BrowserRouter>
+    </>
   );
 };
 
-export default Routing;
+const RouteWithSession = withSession(Routing);
+
+export default RouteWithSession;
