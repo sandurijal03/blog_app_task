@@ -17,7 +17,7 @@ const Routing = ({ refetch, session }) => {
       <Navbar session={session} />
       <ToastContainer position='top-center' />
       <Routes>
-        <Route path='/' element={<Home />} />
+        <Route path='/' element={<Home session={session} />} />
         <Route path='/register' element={<Register refetch={refetch} />} />
         <Route path='/login' element={<Login refetch={refetch} />} />
         <Route path='/write' element={<Write session={session} />} />
