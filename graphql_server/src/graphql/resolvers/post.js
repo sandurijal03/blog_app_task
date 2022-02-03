@@ -54,8 +54,8 @@ export default {
           ...postInput,
           user: user._id.toString(),
         });
-        const post = await newPost.save();
-        return post;
+        await newPost.save();
+        return 'Post created successfully';
       } catch (err) {
         throw new Error(err.message);
       }

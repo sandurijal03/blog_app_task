@@ -2,12 +2,12 @@ import { gql } from 'apollo-server-express';
 
 export default gql`
   type Category {
-    id: ID
+    _id: ID
     name: String!
   }
 
   type Post {
-    id: ID
+    _id: ID
     title: String!
     description: String!
     photo: String
@@ -33,7 +33,7 @@ export default gql`
   extend type Mutation {
     addCategory(name: String!): Category
 
-    createPost(postInput: PostInput): Post
+    createPost(postInput: PostInput): String
     editPost(id: ID, postInput: PostInput): Post
     deletePost(id: ID!): String
   }
