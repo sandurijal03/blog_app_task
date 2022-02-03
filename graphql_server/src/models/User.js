@@ -1,12 +1,13 @@
 import { Schema, model } from 'mongoose';
+import uniqueValidator from 'mongoose-unique-validator';
+import schemaCleaner from '../utils/schemaCleaner';
 
 const userSchema = new Schema({
-  name: {
+  username: {
     type: String,
-    required: true,
-  },
-  email: {
-    type: String,
+    minlength: 3,
+    maxlength: 20,
+    trim: true,
     unique: true,
     required: true,
   },
@@ -19,6 +20,9 @@ const userSchema = new Schema({
     default: 'http://getdrawings.com/free-icon-bw/generic-avatar-icon-3.png',
   },
 });
+
+userSchema.plugin(uniqueValidator);
+schemaCleaner(userSchema);
 
 const User = model('User', userSchema);
 
