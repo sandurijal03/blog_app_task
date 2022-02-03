@@ -10,6 +10,7 @@ import {
   NavLink,
   Avatar,
 } from './style';
+import Logout from '../../pages/auth/Logout';
 
 const links = [
   {
@@ -19,8 +20,8 @@ const links = [
   },
   {
     id: 2,
-    name: 'About',
-    path: '/about',
+    name: 'Categories',
+    path: '/categories',
   },
   {
     id: 3,
@@ -42,8 +43,15 @@ const routes = links.map((link) => (
   </NavLinks>
 ));
 
-const Navbar = ({ name, avatar }) => {
-  console.log(name);
+const Navbar = ({ session }) => {
+  if (session.getProfile === null) {
+    return <NavbarUnAuth />;
+  } else {
+    return <NavbarAuth session={session} />;
+  }
+};
+
+const NavbarUnAuth = () => {
   return (
     <Container>
       <Left>
@@ -53,20 +61,35 @@ const Navbar = ({ name, avatar }) => {
       </Left>
       <Center>{routes}</Center>
       <Right>
-        {name ? (
-          <Link to='/settings'>
-            <Avatar src={avatar} />
-          </Link>
-        ) : (
-          <NavLinks>
-            <NavLink>
-              <Link to='/login'>Login</Link>
-            </NavLink>
-            <NavLink>
-              <Link to='/register'>Register</Link>
-            </NavLink>
-          </NavLinks>
-        )}
+        <NavLinks>
+          <NavLink>
+            <Link to='/login'>Login</Link>
+          </NavLink>
+          <NavLink>
+            <Link to='/register'>Register</Link>
+          </NavLink>
+        </NavLinks>
+      </Right>
+    </Container>
+  );
+};
+
+const NavbarAuth = ({ session }) => {
+  const { avatar } = session.getProfile;
+
+  return (
+    <Container>
+      <Left>
+        <FaFacebook />
+        <FaTwitter />
+        <FaLinkedin />
+      </Left>
+      <Center>{routes}</Center>
+      <Right>
+        <Link to='/settings'>
+          <Avatar src={avatar} />
+        </Link>
+        <Logout />
       </Right>
     </Container>
   );
