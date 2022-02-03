@@ -31,7 +31,7 @@ module.exports = async (req, res, next) => {
   }
 
   let authUser = await User.findOne({
-    email: decodedToken.email,
+    username: decodedToken.username,
   }).select('-password');
 
   if (!authUser) {
