@@ -24,6 +24,10 @@ const postSchema = new Schema(
       ref: 'User',
     },
     categories: [String],
+    file: {
+      type: ObjectId,
+      ref: 'Image',
+    },
   },
   { timestamps: true },
 );
