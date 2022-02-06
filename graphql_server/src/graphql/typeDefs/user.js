@@ -6,6 +6,7 @@ export default gql`
     username: String!
     password: String!
     avatar: String!
+    createdAt: String!
   }
 
   extend type Query {

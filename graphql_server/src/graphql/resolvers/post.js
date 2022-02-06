@@ -1,13 +1,5 @@
 export default {
   Query: {
-    getCategory: async (parent, args, { Category }) => {
-      try {
-        const categories = Category.find({});
-        return categories;
-      } catch (err) {
-        throw new Error();
-      }
-    },
     getAllPost: async (parent, args, { Post }, info) => {
       try {
         const posts = await Post.find().populate('user');
@@ -37,17 +29,6 @@ export default {
     },
   },
   Mutation: {
-    addCategory: async (parent, { name }, { Category }) => {
-      try {
-        const category = await new Category({ name });
-        await category.save();
-        console.log(category);
-        return category;
-      } catch (err) {
-        console.log(err);
-        throw new Error(err);
-      }
-    },
     createPost: async (parent, { postInput }, { Post, user }, info) => {
       try {
         // const date = new Date(`${post.createdAt}`).toLocaleString();

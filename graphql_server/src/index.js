@@ -9,7 +9,6 @@ import { graphqlUploadExpress } from 'graphql-upload';
 import { resolvers, typeDefs } from './graphql';
 import connectDB from './db/connectDB';
 import User from './models/User';
-import Category from './models/Category';
 import Post from './models/Post';
 import Image from './models/Image';
 
@@ -40,7 +39,6 @@ const server = new ApolloServer({
     const { isAuth, user } = req;
     return {
       User,
-      Category,
       Post,
       Image,
       req,
