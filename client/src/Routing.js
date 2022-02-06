@@ -10,6 +10,8 @@ import withSession from './components/withSession';
 import Write from './pages/Write';
 import Categories from './pages/About';
 import Contact from './pages/Contact';
+import Post from './pages/Post';
+import EditPost from './components/EditPost';
 
 const Routing = ({ refetch, session }) => {
   return (
@@ -17,11 +19,16 @@ const Routing = ({ refetch, session }) => {
       <Navbar session={session} />
       <ToastContainer position='top-center' />
       <Routes>
-        <Route path='/' element={<Home session={session} />} />
+        <Route
+          path='/'
+          element={<Home session={session} refetch={refetch} />}
+        />
         <Route path='/register' element={<Register refetch={refetch} />} />
         <Route path='/login' element={<Login refetch={refetch} />} />
         <Route path='/write' element={<Write session={session} />} />
         <Route path='/categories' element={<Categories />} />
+        <Route path='/:id/post' element={<Post />} />
+        <Route path='/edit/:id' element={<EditPost />} />
         <Route path='/contact' element={<Contact />} />
       </Routes>
     </>

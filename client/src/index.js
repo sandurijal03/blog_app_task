@@ -5,15 +5,13 @@ import {
   ApolloClient,
   ApolloProvider,
   ApolloLink,
-  HttpLink,
 } from '@apollo/client';
+import { createUploadLink } from 'apollo-upload-client';
 import { BrowserRouter } from 'react-router-dom';
 
 import RouteWithSession from './Routing';
 
-const httpLink = new HttpLink({
-  uri: 'http://localhost:8848/graphql',
-});
+const link = createUploadLink({ uri: 'http://localhost:8848/graphql' });
 
 const authLink = new ApolloLink((operation, forward) => {
   const token = localStorage.getItem('auth_token');
@@ -26,8 +24,20 @@ const authLink = new ApolloLink((operation, forward) => {
 });
 
 const client = new ApolloClient({
-  link: authLink.concat(httpLink),
-  cache: new InMemoryCache(),
+  link: authLink.concat(link),
+  cache: new InMemoryCache({
+    Query: {
+      Part: {
+        parts: {
+          fields: {
+            merge(existing, incoming) {
+              return incoming;
+            },
+          },
+        },
+      },
+    },
+  }),
 });
 
 const Root = () => (
