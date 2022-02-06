@@ -26,7 +26,7 @@ export const REGISTER_USER = gql`
 
 export const GET_POSTS = gql`
   query {
-    getPost {
+    getAllPost {
       _id
       title
       photo
@@ -41,24 +41,61 @@ export const GET_POSTS = gql`
 
 export const CREATE_POST = gql`
   mutation CreatePost($postInput: PostInput) {
-    createPost(postInput: $postInput)
+    createPost(postInput: $postInput) {
+      _id
+      categories
+      createdAt
+      description
+      photo
+      title
+      user {
+        username
+      }
+    }
   }
 `;
 
 export const EDIT_POST = gql`
-  mutation EditPost($editPostId: ID, $editPostPostInput2: PostInput) {
-    editPost(id: $editPostId, postInput: $editPostPostInput2) {
+  mutation EditPost($id: ID, $postInput: PostInput) {
+    editPost(id: $id, postInput: $postInput) {
       _id
       title
       description
       categories
+      createdAt
       photo
+      user {
+        username
+      }
     }
   }
 `;
 
 export const DELETE_POST = gql`
   mutation DeletePost($deletePostId: ID!) {
-    deletePost(id: $deletePostId)
+    deletePost(id: $deletePostId) {
+      _id
+    }
+  }
+`;
+
+export const GET_POST_BY_ID = gql`
+  query GetPostById($id: ID!) {
+    getPostById(id: $id) {
+      _id
+      title
+      description
+      photo
+      categories
+      user {
+        username
+      }
+    }
+  }
+`;
+
+export const FILE_UPLOAD = gql`
+  mutation FILE_UPLOAD($file: Upload!) {
+    singleUpload(file: $file)
   }
 `;
