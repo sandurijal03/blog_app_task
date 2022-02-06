@@ -9,6 +9,7 @@ import {
   NavLinks,
   NavLink,
   Avatar,
+  SocialLink,
 } from './style';
 import Logout from '../../pages/auth/Logout';
 
@@ -55,18 +56,21 @@ const NavbarUnAuth = () => {
   return (
     <Container>
       <Left>
-        <FaFacebook />
-        <FaTwitter />
-        <FaLinkedin />
+        <SocialLink>
+          <FaFacebook />
+        </SocialLink>
+        <SocialLink>
+          <FaTwitter />
+        </SocialLink>
+        <SocialLink>
+          <FaLinkedin />
+        </SocialLink>
       </Left>
       <Center>{routes}</Center>
       <Right>
         <NavLinks>
           <NavLink>
             <Link to='/login'>Login</Link>
-          </NavLink>
-          <NavLink>
-            <Link to='/register'>Register</Link>
           </NavLink>
         </NavLinks>
       </Right>
@@ -80,9 +84,15 @@ const NavbarAuth = ({ session }) => {
   return (
     <Container>
       <Left>
-        <FaFacebook />
-        <FaTwitter />
-        <FaLinkedin />
+        <SocialLink>
+          <FaFacebook />
+        </SocialLink>
+        <SocialLink>
+          <FaTwitter />
+        </SocialLink>
+        <SocialLink>
+          <FaLinkedin />
+        </SocialLink>
       </Left>
       <Center>{routes}</Center>
       <Right>

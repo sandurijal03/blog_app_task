@@ -1,7 +1,8 @@
 import styled from 'styled-components';
+
 const Container = styled.header`
   width: 100%;
-  height: 50px;
+  height: 80px;
   background-color: white;
   position: sticky;
   top: 0;
@@ -9,7 +10,7 @@ const Container = styled.header`
   flex-direction: row;
   z-index: 999;
   font-family: 'Josefin Sans', sans-serif;
-  border-bottom: 2px solid;
+  box-shadow: 0 2px 4px rgba(42, 51, 66, 0.08);
 `;
 
 const Left = styled.div`
@@ -17,6 +18,14 @@ const Left = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+
+const SocialLink = styled.span`
+  margin: 0px 5px;
+  svg {
+    font-size: 2rem;
+    color: blue;
+  }
 `;
 
 const Center = styled.nav`
@@ -43,14 +52,14 @@ const NavLinks = styled.ul`
 
 const NavLink = styled.li`
   margin-right: 20px;
-  font-size: 18px;
-  font-weight: 300;
+  font-size: 1.5rem;
+  font-weight: bold;
   cursor: pointer;
   a {
     text-decoration: none;
-  }
-  :hover {
-    color: gray;
+    :hover {
+      color: red;
+    }
   }
 `;
 
@@ -63,4 +72,13 @@ const Avatar = styled.img`
   cursor: pointer;
 `;
 
-export { Avatar, Left, Right, Center, NavLink, NavLinks, Container };
+export {
+  Avatar,
+  Left,
+  Right,
+  Center,
+  NavLink,
+  NavLinks,
+  Container,
+  SocialLink,
+};
