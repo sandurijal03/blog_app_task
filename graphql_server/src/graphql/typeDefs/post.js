@@ -13,11 +13,12 @@ export default gql`
     photo: String
     user: User
     categories: [String]
+    createdAt: String
   }
 
   input PostInput {
     title: String!
-    description: String!
+    description: String
     photo: String
     categories: [String]
   }
@@ -25,16 +26,16 @@ export default gql`
   extend type Query {
     getCategory: [Category]
 
-    getPost: [Post]
+    getAllPost: [Post]
     getPostById(id: ID!): Post
-    getUserPost: Post
+    getUserPost: [Post]
   }
 
   extend type Mutation {
     addCategory(name: String!): Category
 
-    createPost(postInput: PostInput): String
+    createPost(postInput: PostInput): Post
     editPost(id: ID, postInput: PostInput): Post
-    deletePost(id: ID!): String
+    deletePost(id: ID!): Post
   }
 `;
