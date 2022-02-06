@@ -21,16 +21,11 @@ const links = [
   },
   {
     id: 2,
-    name: 'Categories',
-    path: '/categories',
+    name: 'Profile',
+    path: '/profile',
   },
   {
     id: 3,
-    name: 'Contact',
-    path: '/contact',
-  },
-  {
-    id: 4,
     name: 'Write',
     path: '/write',
   },

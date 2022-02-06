@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const Container = styled.header`
   width: 100%;
-  height: 80px;
+  height: 50px;
   background-color: white;
   position: sticky;
   top: 0;
@@ -53,7 +53,6 @@ const NavLinks = styled.ul`
 const NavLink = styled.li`
   margin-right: 20px;
   font-size: 1.5rem;
-  font-weight: bold;
   cursor: pointer;
   a {
     text-decoration: none;
