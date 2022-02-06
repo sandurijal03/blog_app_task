@@ -2,7 +2,12 @@ import styled from 'styled-components';
 import { FaPlus } from 'react-icons/fa';
 
 const Container = styled.div`
-  padding-top: 50px;
+  width: 1540px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 10px;
 `;
 
 const WriteIcon = styled(FaPlus)`
