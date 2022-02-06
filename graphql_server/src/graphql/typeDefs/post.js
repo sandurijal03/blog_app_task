@@ -28,7 +28,7 @@ export default gql`
 
     getAllPost: [Post]
     getPostById(id: ID!): Post
-    getUserPost: [Post]
+    getUserPost(username: String!): [Post]
   }
 
   extend type Mutation {

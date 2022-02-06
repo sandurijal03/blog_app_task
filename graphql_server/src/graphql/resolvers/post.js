@@ -27,11 +27,9 @@ export default {
         throw new Error(err.message);
       }
     },
-    getUserPost: async (parent, args, { Post, user }, info) => {
+    getUserPost: async (parent, { username }, { Post }, info) => {
       try {
-        const posts = await Post.find({ user: user._id.toString() }).populate(
-          'user',
-        );
+        const posts = await Post.find({ username }).populate('user');
         return posts;
       } catch (err) {
         throw new Error(err.message);
