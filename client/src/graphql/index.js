@@ -99,3 +99,19 @@ export const FILE_UPLOAD = gql`
     singleUpload(file: $file)
   }
 `;
+
+export const GET_USER_POST = gql`
+  query GetUserPost($username: String!) {
+    getUserPost(username: $username) {
+      _id
+      title
+      description
+      photo
+      categories
+      createdAt
+      user {
+        username
+      }
+    }
+  }
+`;
