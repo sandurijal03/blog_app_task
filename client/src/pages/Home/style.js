@@ -1,17 +1,20 @@
 import styled from 'styled-components';
 
 const Container = styled.div`
-  width: 1540px;
+  width: 80%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
   background-color: #060f2f;
-  padding: 10px;
+  /* padding: 10px; */
 `;
 
 const CardsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
+  height: 600px;
+  margin-top: 20px;
 `;
 
 const Card = styled.div`
@@ -40,9 +43,9 @@ const Category = styled.span`
 const Top = styled.div`
   background-image: ${(props) =>
     props.image ? `url("${props.image}")` : '#f2bc22'};
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Do not repeat the image */
-  background-size: cover; /* Resize the background image to cover the entire container */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   width: 350px;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;

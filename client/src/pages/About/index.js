@@ -3,10 +3,10 @@ import withAuth from '../../components/withAuth';
 import Wrapper from '../../components/Wrapper';
 import styled from 'styled-components';
 import UserInfo from './UserInfo';
-import UserPost from './UserPost';
 
 const Container = styled.div`
   width: 1540px;
+  height: calc(100vh - 50px);
   display: flex;
   flex-direction: column;
   margin: 0 auto;
@@ -21,7 +21,6 @@ const Profile = ({ session }) => {
     <Wrapper>
       <Container>
         <UserInfo session={session} />
-        <UserPost username={session.getProfile.username} />
       </Container>
     </Wrapper>
   );

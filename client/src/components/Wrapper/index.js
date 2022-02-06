@@ -4,6 +4,7 @@ import styled from 'styled-components';
 const Container = styled.main`
   margin: 0 auto;
   background: #1b2240;
+  height: 100%;
 `;
 
 const Wrapper = ({ children }) => {
