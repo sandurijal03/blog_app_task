@@ -20,7 +20,7 @@ import {
   Button,
 } from './style';
 
-const Post = ({ props }) => {
+const Post = ({ session }) => {
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -85,14 +85,17 @@ const Post = ({ props }) => {
       <Wrapper>
         <Container>
           <Title>{title}</Title>
-          <Buttons>
-            <EditButton onClick={handleClick}>
-              <AiOutlineEdit />
-            </EditButton>
-            <Button onClick={handleDelete}>
-              <AiOutlineDelete />
-            </Button>
-          </Buttons>
+          {session.getProfile !== null &&
+            session.getProfile.username === username && (
+              <Buttons>
+                <EditButton onClick={handleClick}>
+                  <AiOutlineEdit />
+                </EditButton>
+                <Button onClick={handleDelete}>
+                  <AiOutlineDelete />
+                </Button>
+              </Buttons>
+            )}
           <Categories>{category}</Categories>
           <Author>
             Posted by: <strong>{username}</strong>
