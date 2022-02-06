@@ -1,13 +1,17 @@
 require('dotenv').config();
 
+import path from 'path';
+
 import { ApolloServer } from 'apollo-server-express';
 import express from 'express';
+import { graphqlUploadExpress } from 'graphql-upload';
 
 import { resolvers, typeDefs } from './graphql';
 import connectDB from './db/connectDB';
 import User from './models/User';
 import Category from './models/Category';
 import Post from './models/Post';
+import Image from './models/Image';
 
 const auth = require('./middlewares/auth');
 
@@ -15,6 +19,8 @@ const app = express();
 connectDB();
 
 app.use(auth);
+app.use(express.json());
+app.use(express.static(path.join(__dirname, '../../client/public/uploads')));
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST,GET,OPTIONS');
@@ -24,16 +30,19 @@ app.use((req, res, next) => {
   }
   next();
 });
+app.use(graphqlUploadExpress({ maxFileSize: 1000000000, maxFiles: 10 }));
 
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  uploads: false,
   context: ({ req }) => {
     const { isAuth, user } = req;
     return {
       User,
       Category,
       Post,
+      Image,
       req,
       isAuth,
       user,
