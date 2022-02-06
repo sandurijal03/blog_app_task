@@ -17,8 +17,9 @@ import Error from '../../components/Error';
 import Loading from '../../components/Loading';
 import Wrapper from '../../components/Wrapper';
 import { useNavigate } from 'react-router-dom';
+import withAuth from '../../components/withAuth';
 
-const Write = () => {
+const Write = ({ session }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   // const [file, setFile] = useState(null);
@@ -130,4 +131,4 @@ const Write = () => {
   );
 };
 
-export default Write;
+export default withAuth((session) => session && session.getProfile)(Write);
