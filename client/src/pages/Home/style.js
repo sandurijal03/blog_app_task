@@ -1,45 +1,113 @@
 import styled from 'styled-components';
 
-const Cards = styled.div`
+const Container = styled.div`
+  width: 1540px;
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  margin: 0 auto;
+  background-color: #060f2f;
+  padding: 10px;
+`;
+
+const CardsContainer = styled.div`
+  display: flex;
   flex-wrap: wrap;
 `;
 
 const Card = styled.div`
-  border: 2px solid;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  width: 500px;
-  margin: 10px;
   background: lightGray;
-  height: 200px;
+  height: 500px;
+  width: 350px;
+  margin: 10px auto;
+  box-shadow: 0 2px 4px rgba(42, 51, 66, 0.08);
+  border-radius: 10px;
+`;
+
+const Categories = styled.div`
+  display: flex;
 `;
 
 const Category = styled.span`
   background-color: white;
   padding: 10px 5px;
-  font-weight: bold;
-  margin: 5px;
+  margin: 2px;
   border-radius: 5px;
 `;
 
-const Left = styled.div``;
+const Top = styled.div`
+  background-image: ${(props) =>
+    props.image ? `url("${props.image}")` : '#f2bc22'};
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+  width: 350px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  height: 300px;
+  border-bottom: 1px solid;
+`;
 
-const Right = styled.div``;
+const Center = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5px;
+  width: 350px;
+  a {
+    text-decoration: none;
+    color: black;
+  }
+`;
 
-const Image = styled.img`
-  width: 100px;
+const Right = styled.div`
+  margin: 0 10px 10px 0;
 `;
 
 const CardTitle = styled.h3`
-  margin: 30px 10px;
+  margin: 20px 5px;
 `;
 
 const BlogAuthor = styled.p`
   margin: 30px 10px;
-  font-weight: 500;
+  font-weight: 600;
 `;
 
-export { Cards, Card, Category, Left, Right, Image, CardTitle, BlogAuthor };
+const Buttons = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+
+const Button = styled.button`
+  padding: 10px;
+  width: 80px;
+  margin-top: 50px;
+  margin-left: 10px;
+  border-radius: 10px;
+  border: none;
+`;
+
+const DeleteButton = styled(Button)`
+  color: red;
+  svg {
+    font-size: 2rem;
+  }
+`;
+
+export {
+  CardsContainer,
+  Card,
+  Category,
+  Top,
+  Right,
+  CardTitle,
+  BlogAuthor,
+  DeleteButton,
+  Buttons,
+  Container,
+  Center,
+  Categories,
+};
