@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const connectDB = async () => {
   try {
-    await mongoose.connect('mongodb://localhost:27017/graphql_blog_app');
+    await mongoose.connect(process.env.DB_URI);
     console.log('database connected');
   } catch (err) {
     console.log(err);
